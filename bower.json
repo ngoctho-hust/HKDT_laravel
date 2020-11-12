@@ -12,5 +12,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "bower-hkdt": "https://github.com/ngoctho-hust/bowerhkdt.git"
+  }
 }
