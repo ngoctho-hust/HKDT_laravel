@@ -4,7 +4,7 @@
 
         <div class="col-sm-7">
             <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
-            <h1>@yield('title')</h1>
+            <h3>@yield('title')</h3>
         </div>
 
         <div class="col-sm-5">
