@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SoHoKhauRequest;
 use App\Models\SoHoKhau;
-use Illuminate\Http\Request;
 
 class SoHoKhauController extends Controller
 {
@@ -24,48 +24,52 @@ class SoHoKhauController extends Controller
     {
         $soHoKhaus = SoHoKhau::with('chuHo')->get();
 
-        return view('sohokhaus', compact('soHoKhaus'));
+        return view('sohokhau.index', compact('soHoKhaus'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('sohokhau.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param SoHoKhauRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(SoHoKhauRequest $request)
     {
-        //
+        $soHoKhau = SoHoKhau::create($request->all());
+
+        return redirect()->route('sohokhau.show', $soHoKhau);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param SoHoKhau $soHoKhau
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
      */
-    public function show($id)
+    public function show(SoHoKhau $soHoKhau)
     {
-        //
+        $soHoKhau->load('nhanKhaus');
+
+        return view('sohokhau.detail', compact('soHoKhau'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param SoHoKhau $soHoKhau
+     * @return void
      */
-    public function edit($id)
+    public function edit(SoHoKhau $soHoKhau)
     {
         //
     }
@@ -73,11 +77,11 @@ class SoHoKhauController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param SoHoKhauRequest $request
+     * @param SoHoKhau $soHoKhau
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(SoHoKhauRequest $request, SoHoKhau $soHoKhau)
     {
         //
     }
@@ -85,10 +89,10 @@ class SoHoKhauController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param SoHoKhau $soHoKhau
+     * @return void
      */
-    public function destroy($id)
+    public function destroy(SoHoKhau $soHoKhau)
     {
         //
     }
