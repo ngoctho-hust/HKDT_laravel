@@ -15,7 +15,7 @@
                     <a href=""> <i class="menu-icon fa fa-eye"></i>Tổng quan </a>
                 </li>
                 <li class="active">
-                    <a href=""> <i class="menu-icon fa fa-book"></i>Quản lý sổ hộ khẩu </a>
+                    <a href="{{ route('sohokhau.index') }}"> <i class="menu-icon fa fa-book"></i>Quản lý sổ hộ khẩu </a>
                 </li>
                 <li class="active">
                     <a href=""> <i class="menu-icon fa fa-id-card"></i>Quản lý nhân khẩu </a>

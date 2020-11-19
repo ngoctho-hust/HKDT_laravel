@@ -18,12 +18,17 @@ class SoHoKhau extends Model
         'quan_huyen',
     ];
 
-    public function NhanKhau()
+    public function chuHo()
+    {
+        return $this->belongsTo(NhanKhau::class, 'chu_ho_id');
+    }
+
+    public function nhanKhaus()
     {
         return $this->hasMany(NhanKhau::class, 'sohokhau_id');
     }
 
-    public function TamTru()
+    public function tamTrus()
     {
         return $this->hasMany(TamTru::class, 'sohokhau_id');
     }
