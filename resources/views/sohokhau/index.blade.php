@@ -15,30 +15,38 @@
                     <div class="card-header">
                         <strong class="card-title">{{ trans('pages.ds_shk') }}</strong>
                         <div>
-                            <a class="btn btn-sm btn-success" href="{{ route('sohokhau.create') }}">{{ trans('pages.shk_create') }}</a>
+                            <a class="btn btn-sm btn-success" href="{{ route('sohokhau.create') }}"><i class="fa fa-plus"></i>&nbsp; {{ trans('pages.shk_create') }}</a>
                         </div>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                             <thead>
                             <tr>
+                                <th>{{ trans('pages.so') }}</th>
                                 <th>{{ trans('pages.chu_ho') }}</th>
                                 <th>{{ trans('pages.ngay_cap') }}</th>
                                 <th>{{ trans('pages.so_nha') }}</th>
                                 <th>{{ trans('pages.pho_ap') }}</th>
                                 <th>{{ trans('pages.phuong_xa') }}</th>
-                                <th>{{ trans('pages.quan_huyen') }}</th>
+                                <th>{{ trans('pages.quan_huyen') }}
+                                <th>{{ trans('pages.option') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($soHoKhaus as $soHoKhau)
                                 <tr>
+                                    <td>{{ $soHoKhau->id }}</td>
                                     <td>{{ $soHoKhau->chuHo->ho_ten ?? trans('pages.chu_ho_default') }}</td>
                                     <td>{{ $soHoKhau->ngay_cap }}</td>
                                     <td>{{ $soHoKhau->so_nha }}</td>
                                     <td>{{ $soHoKhau->pho_ap }}</td>
                                     <td>{{ $soHoKhau->phuong_xa }}</td>
                                     <td>{{ $soHoKhau->quan_huyen }}</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-outline-info" href="{{ route('sohokhau.show', $soHoKhau) }}" data-toggle="tooltip" title="{{ trans('pages.read') }}"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-sm btn-outline-warning" href="{{ route('sohokhau.edit', $soHoKhau) }}" data-toggle="tooltip" title="{{ trans('pages.edit') }}"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-sm btn-outline-danger" href="#" data-toggle="tooltip" title="{{ trans('pages.delete') }}"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

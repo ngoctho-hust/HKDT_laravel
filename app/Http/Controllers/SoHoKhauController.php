@@ -53,47 +53,52 @@ class SoHoKhauController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param SoHoKhau $soHoKhau
+     * @param SoHoKhau $sohokhau
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
      */
-    public function show(SoHoKhau $soHoKhau)
+    public function show(SoHoKhau $sohokhau)
     {
-        $soHoKhau->load('nhanKhaus');
+        $sohokhau->load('nhanKhaus');
 
-        return view('sohokhau.detail', compact('soHoKhau'));
+        return view('sohokhau.detail', compact('sohokhau'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param SoHoKhau $soHoKhau
-     * @return void
+     * @param SoHoKhau $sohokhau
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
      */
-    public function edit(SoHoKhau $soHoKhau)
+    public function edit(SoHoKhau $sohokhau)
     {
-        //
+        return view('sohokhau.edit', compact('sohokhau'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param SoHoKhauRequest $request
-     * @param SoHoKhau $soHoKhau
-     * @return void
+     * @param SoHoKhau $sohokhau
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(SoHoKhauRequest $request, SoHoKhau $soHoKhau)
+    public function update(SoHoKhauRequest $request, SoHoKhau $sohokhau)
     {
-        //
+        $sohokhau->update($request->all());
+
+        return redirect()->route('sohokhau.show', $sohokhau)->with('success', 'Đã cập nhật thông tin sổ hộ khẩu!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param SoHoKhau $soHoKhau
-     * @return void
+     * @param SoHoKhau $sohokhau
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(SoHoKhau $soHoKhau)
+    public function destroy(SoHoKhau $sohokhau)
     {
-        //
+        $sohokhau->delete();
+
+        return redirect()->route('sohokhau.index');
     }
 }
