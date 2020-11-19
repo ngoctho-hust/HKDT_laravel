@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('home');
+    $soHoKhaus = \App\Models\SoHoKhau::all();
+    return redirect()->route('home', compact('soHoKhaus'));
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('sohokhau', \App\Http\Controllers\SoHoKhauController::class);

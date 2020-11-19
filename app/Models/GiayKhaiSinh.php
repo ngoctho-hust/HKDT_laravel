@@ -17,7 +17,7 @@ class GiayKhaiSinh extends Model
         'nhankhau_id',
     ];
 
-    public function NhanKhau()
+    public function nhanKhau()
     {
         return $this->belongsTo(NhanKhau::class, 'nhankhau_id');
     }

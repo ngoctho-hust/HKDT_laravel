@@ -16,7 +16,7 @@ class KhaiTu extends Model
         'nguyen_nhan',
     ];
 
-    public function NhanKhau()
+    public function nhanKhau()
     {
         return $this->belongsTo(NhanKhau::class, 'nhankhau_id');
     }

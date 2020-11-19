@@ -16,7 +16,7 @@ class TamVang extends Model
         'ly_do',
     ];
 
-    public function NhanKhau()
+    public function nhanKhau()
     {
         return $this->belongsTo(NhanKhau::class, 'nhankhau_id');
     }

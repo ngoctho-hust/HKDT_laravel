@@ -24,12 +24,12 @@ class NhanKhau extends Model
         'sohokhau_id',
     ];
 
-    public function SoHoKhau()
+    public function soHoKhau()
     {
         return $this->belongsTo(SoHoKhau::class, 'sohokhau_id');
     }
 
-    public function TamTru()
+    public function tamTrus()
     {
         return $this->hasMany(TamTru::class, 'nhankhau_id');
     }
@@ -39,17 +39,17 @@ class NhanKhau extends Model
         return $this->hasOne(CCCD::class, 'nhankhau_id');
     }
 
-    public function GiayKhaiSinh()
+    public function giayKhaiSinh()
     {
         return $this->hasOne(GiayKhaiSinh::class, 'nhankhau_id');
     }
 
-    public function KhauTu()
+    public function khauTu()
     {
         return $this->hasOne(KhaiTu::class, 'nhankhau_id');
     }
 
-    public function TamVang()
+    public function tamVangs()
     {
         return $this->hasMany(TamVang::class, 'nhankhau_id');
     }

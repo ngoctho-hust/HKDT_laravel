@@ -17,12 +17,12 @@ class TamTru extends Model
         'ly_do',
     ];
 
-    public function SoHoKhau()
+    public function soHoKhau()
     {
         return $this->belongsTo(SoHoKhau::class, 'sohokhau_id');
     }
 
-    public function NhanKhau()
+    public function nhanKhau()
     {
         return $this->belongsTo(NhanKhau::class, 'nhankhau_id');
     }
