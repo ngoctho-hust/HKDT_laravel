@@ -13,13 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $soHoKhaus = \App\Models\SoHoKhau::all();
-    return redirect()->route('home', compact('soHoKhaus'));
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', function () {
+        $soHoKhaus = \App\Models\SoHoKhau::all();
+        return redirect()->route('home', compact('soHoKhaus'));
+    });
 
-Route::resource('sohokhau', \App\Http\Controllers\SoHoKhauController::class);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::resource('sohokhau', \App\Http\Controllers\SoHoKhauController::class);
+});
