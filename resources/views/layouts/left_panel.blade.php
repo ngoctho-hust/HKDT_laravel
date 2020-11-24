@@ -11,16 +11,16 @@
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active">
+                <li class="@yield('tong_quan')">
                     <a href=""> <i class="menu-icon fa fa-eye"></i>Tổng quan </a>
                 </li>
-                <li class="active">
+                <li class="@yield('quan_ly_so_ho_khau')">
                     <a href="{{ route('sohokhau.index') }}"> <i class="menu-icon fa fa-book"></i>Quản lý sổ hộ khẩu </a>
                 </li>
-                <li class="active">
-                    <a href=""> <i class="menu-icon fa fa-id-card"></i>Quản lý nhân khẩu </a>
+                <li class="@yield('quan_ly_nhan_khau')">
+                    <a href="{{ route('nhankhau.index') }}"> <i class="menu-icon fa fa-id-card"></i>Quản lý nhân khẩu </a>
                 </li>
-                <li class="active">
+                <li class="@yield('thong_ke')">
                     <a href=""> <i class="menu-icon fa fa-bar-chart"></i>Thống kê </a>
                 </li>
             </ul>
