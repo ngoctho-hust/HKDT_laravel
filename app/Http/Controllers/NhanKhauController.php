@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SoHoKhauRequest;
-use App\Models\SoHoKhau;
+use App\Http\Requests\NhanKhauRequest;
+use App\Models\NhanKhau;
 
-class SoHoKhauController extends Controller
+class NhanKhauController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class SoHoKhauController extends Controller
      */
     public function index()
     {
-        $soHoKhaus = SoHoKhau::with('chuHo')->get();
+        $nhanKhaus = NhanKhau::all();
 
-        return view('sohokhau.index', compact('soHoKhaus'));
+        return view('nhankhau.index', compact('nhanKhaus'));
     }
 
     /**
@@ -26,71 +26,68 @@ class SoHoKhauController extends Controller
      */
     public function create()
     {
-        return view('sohokhau.create');
+        return view('nhankhau.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param SoHoKhauRequest $request
+     * @param NhanKhauRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(SoHoKhauRequest $request)
+    public function store(NhanKhauRequest $request)
     {
-        $soHoKhau = SoHoKhau::create($request->all());
+        $nhanKhau = NhanKhau::create($request->all());
 
-        return redirect()->route('sohokhau.show', $soHoKhau);
+        return redirect()->route('nhankhau.show', $nhanKhau);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param SoHoKhau $sohokhau
+     * @param NhanKhau $nhankhau
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
      */
-    public function show(SoHoKhau $sohokhau)
+    public function show(NhanKhau $nhankhau)
     {
-        $sohokhau->load('nhanKhaus');
-
-        return view('sohokhau.detail', compact('sohokhau'));
+        return view('nhankhau.detail', compact('nhankhau'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param SoHoKhau $sohokhau
+     * @param NhanKhau $nhankhau
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
      */
-    public function edit(SoHoKhau $sohokhau)
+    public function edit(NhanKhau $nhankhau)
     {
-        return view('sohokhau.edit', compact('sohokhau'));
+        return view('nhankhau.edit', compact('nhankhau'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param SoHoKhauRequest $request
-     * @param SoHoKhau $sohokhau
+     * @param NhanKhauRequest $request
+     * @param NhanKhau $nhankhau
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(SoHoKhauRequest $request, SoHoKhau $sohokhau)
+    public function update(NhanKhauRequest $request, NhanKhau $nhankhau)
     {
-        $sohokhau->update($request->all());
+        $nhankhau->update($request->all());
 
-        return redirect()->route('sohokhau.show', $sohokhau)->with('success', 'Đã cập nhật thông tin sổ hộ khẩu!');
+        return redirect()->route('nhankhau.show', $nhankhau)->with('success', 'Cập nhật nhân khẩu thành công');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param SoHoKhau $sohokhau
+     * @param NhanKhau $nhankhau
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
      */
-    public function destroy(SoHoKhau $sohokhau)
+    public function destroy(NhanKhau $nhankhau)
     {
-        $sohokhau->delete();
+        $nhankhau->delete();
 
-        return redirect()->route('sohokhau.index');
+        return redirect()->route('nhankhau.index');
     }
 }

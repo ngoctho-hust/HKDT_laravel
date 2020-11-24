@@ -2,6 +2,7 @@
 
 return [
     'ds_shk' => 'Danh sách sổ hộ khẩu',
+    'ds_nk' => 'Danh sách nhân khẩu',
     'shk_create' => 'Thêm mới',
     'chu_ho' => 'Chủ hộ',
     'ngay_cap' => 'Ngày cấp',
@@ -10,6 +11,8 @@ return [
     'phuong_xa' => 'Phường xã',
     'quan_huyen' => 'Quận huyện',
     'shk_info' => 'Thông tin sổ hộ khẩu mới',
+    'nk_info' => 'Thông tin nhân khẩu mới',
+    'nk_info1' => 'Thông tin nhân khẩu',
     'nhap_so_nha' => 'Nhập số nhà',
     'nhap_pho_ap' => 'Nhập phố ấp',
     'nhap_phuong_xa' => 'Nhập phường xã',
@@ -31,6 +34,7 @@ return [
     'noi_lam_viec' => 'Nơi làm việc',
     'quan_he_voi_chu_ho' => 'Quan hệ với chủ hộ',
     'thuong_tru_truoc' => 'Nơi thường trú trước khi chuyển đến',
+    'sohokhau_id' => 'Số sổ hộ khẩu',
     'create' => 'Thêm mới',
     'read' => 'Chi tiết',
     'update' => 'Cập nhật',

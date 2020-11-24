@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', Lang::get('pages.shk_so', ['so' => $sohokhau->id]))
+@section('title', 'Quản lý nhân khẩu')
 
-@section('quan_ly_so_ho_khau', 'active')
+@section('quan_ly_nhan_khau', 'active')
 
 @push('head')
     <link rel="stylesheet" href="{{ asset('vendor/bower-hkdt/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -12,65 +12,12 @@
 @section('content')
     <div class="animated fadeIn">
         <div class="row">
-            <div class="col-md-12 col-lg-6 col-sm-12 ">
-                <div class="card">
-                    <div class="card-header">
-                        <strong class="card-title">{{ trans('pages.shk_info') }}</strong>
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <tbody>
-                            <tr>
-                                <th scope="row">{{ trans('pages.so') }}:</th>
-                                <td>{{ $sohokhau->id }}</td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">{{ trans('pages.ngay_cap') }}:</th>
-                                <td>{{ $sohokhau->ngay_cap }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ trans('pages.chu_ho') }}:</th>
-                                <td>{{ $sohokhau->chuHo->name ?? null }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ trans('pages.so_nha') }}:</th>
-                                <td>{{ $sohokhau->so_nha }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ trans('pages.pho_ap') }}:</th>
-                                <td>{{ $sohokhau->pho_ap }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ trans('pages.phuong_xa') }}:</th>
-                                <td>{{ $sohokhau->phuong_xa }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ trans('pages.quan_huyen') }}:</th>
-                                <td>{{ $sohokhau->quan_huyen }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-center">
-                                <a class="btn btn-sm btn-info" href="{{ route('sohokhau.edit', $sohokhau->id) }}"><i class="fa fa-pencil"></i>&nbsp; {{ trans('pages.shk_edit') }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="row">
-                            <div class="col-4">
-                                <strong class="card-title">{{ trans('pages.nhan_khau_trong_ho') }}</strong>
-                            </div>
-                            <div class="col-8 d-flex justify-content-end">
-                                <a class="btn btn-sm btn-success" href="{{ route('sohokhau.create') }}"><i class="fa fa-plus"></i>&nbsp; {{ trans('pages.shk_create') }}</a>
-                            </div>
+                        <strong class="card-title">{{ trans('pages.ds_nk') }}</strong>
+                        <div>
+                            <a class="btn btn-sm btn-success" href="{{ route('nhankhau.create') }}"><i class="fa fa-plus"></i>&nbsp; {{ trans('pages.shk_create') }}</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -87,7 +34,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($sohokhau->nhanKhaus as $nhanKhau)
+                            @foreach($nhanKhaus as $nhanKhau)
                                 <tr>
                                     <td>{{ $nhanKhau->quan_he_voi_chu_ho }}</td>
                                     <td>{{ $nhanKhau->ho_ten }}</td>
