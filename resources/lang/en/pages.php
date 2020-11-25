@@ -42,4 +42,11 @@ return [
     'delete' => 'Xóa',
     'option' => 'Tùy chọn',
     'success' => 'Thành công',
+    'cccd' => 'Căn cước công dân',
+    'no_cccd' => 'Chưa có căn cước công dân',
+    'noi_cap' => 'Nơi cấp',
+    'cccd_delete_confirm' => 'Bạn có muốn xóa căn cước công dân?',
+    'cccd_delete' => 'Xóa căn cước công dân',
+    'not_undo' => 'Không thể khôi phục sau khi xóa',
+    'cancel' => 'Hủy',
 ];
