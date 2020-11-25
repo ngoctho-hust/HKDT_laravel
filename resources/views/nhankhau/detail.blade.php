@@ -60,5 +60,141 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-6 col-sm-12 ">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">{{ trans('pages.cccd') }}</strong>
+                    </div>
+                    <div class="card-body">
+                        @if ($nhankhau->CCCD)
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">{{ trans('pages.so') }}:</th>
+                                    <td>{{ $nhankhau->CCCD->so_cccd }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">{{ trans('pages.ngay_cap') }}:</th>
+                                    <td>{{ $nhankhau->CCCD->ngay_cap }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ trans('pages.noi_cap') }}:</th>
+                                    <td>{{ $nhankhau->CCCD->noi_cap }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-end">
+                                    <a href="#editCCCD" class="btn btn-sm btn-info" data-toggle="modal"><i class="fa fa-pencil"></i>&nbsp; {{ trans('pages.shk_edit') }}</a>
+                                    &nbsp;&nbsp;
+                                    <a class="btn btn-sm btn-danger" href="#deleteCCCDModal" data-toggle="modal"><i class="fa fa-trash"> {{ trans('pages.delete') }}</i></a>
+                                </div>
+                            </div>
+                        @else
+                            <a>{{ trans('pages.no_cccd') }}</a>
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <a href="#createCCCD" class="btn btn-sm btn-info" data-toggle="modal"><i class="fa fa-pencil"></i>&nbsp; {{ trans('pages.shk_create') }}</a>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
     </div><!-- .animated -->
+    @if ($nhankhau->CCCD)
+        <!-- Edit CCCD HTML -->
+        <div id="editCCCD" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-group" action="{{ route('cccd.update', $nhankhau->CCCD) }}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <div class="modal-header">
+                            <h4 class="modal-title"><strong>{{ trans('pages.cccd') }}</strong></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="so_cccd" class=" form-control-label">{{ trans('pages.so') }} <span class="required">*</span></label>
+                                <input type="text" id="so_cccd" name="so_cccd" value="{{ $nhankhau->CCCD->so_cccd }}" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ngay_cap" class=" form-control-label">{{ trans('pages.ngay_cap') }} <span class="required">*</span></label>
+                                <input type="date" id="ngay_cap" name="ngay_cap" value="{{ $nhankhau->CCCD->ngay_cap }}" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="noi_cap" class=" form-control-label">{{ trans('pages.noi_cap') }} <span class="required">*</span></label>
+                                <input type="text" id="noi_cap" name="noi_cap" value="{{ $nhankhau->CCCD->noi_cap }}" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Delete CCCD Modal HTML -->
+        <div id="deleteCCCDModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="{{ route('cccd.destroy', $nhankhau->CCCD) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{ trans('pages.cccd_delete') }}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ trans('pages.cccd_delete_confirm') }}</p>
+                            <p class="text-warning"><small>{{ trans('pages.not_undo') }}</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="{{ trans('pages.cancel') }}">
+                            <input type="submit" class="btn btn-danger" value="{{ trans('pages.delete') }}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <!-- Create CCCD HTML -->
+    <div id="createCCCD" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-group" action="{{ route('cccd.store') }}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h4 class="modal-title"><strong>{{ trans('pages.cccd') }}</strong></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="so_cccd" class=" form-control-label">{{ trans('pages.so') }} <span class="required">*</span></label>
+                            <input type="text" id="so_cccd" name="so_cccd" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ngay_cap" class=" form-control-label">{{ trans('pages.ngay_cap') }} <span class="required">*</span></label>
+                            <input type="date" id="ngay_cap" name="ngay_cap" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="noi_cap" class=" form-control-label">{{ trans('pages.noi_cap') }} <span class="required">*</span></label>
+                            <input type="text" id="noi_cap" name="noi_cap" class="form-control" required>
+                        </div>
+                        <input type="hidden" name="nhankhau_id" value="{{ $nhankhau->id }}">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
