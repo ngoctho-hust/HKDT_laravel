@@ -5,8 +5,10 @@
 @section('quan_ly_so_ho_khau', 'active')
 
 @push('head')
-    <link rel="stylesheet" href="{{ asset('vendor/bower-hkdt/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/bower-hkdt/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('vendor/bower-hkdt/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('vendor/bower-hkdt/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
 @endpush
 
 @section('content')
@@ -53,7 +55,8 @@
                         </table>
                         <div class="row">
                             <div class="col-12 d-flex justify-content-center">
-                                <a class="btn btn-sm btn-info" href="{{ route('sohokhau.edit', $sohokhau->id) }}"><i class="fa fa-pencil"></i>&nbsp; {{ trans('pages.shk_edit') }}</a>
+                                <a class="btn btn-sm btn-info" href="{{ route('sohokhau.edit', $sohokhau->id) }}"><i
+                                        class="fa fa-pencil"></i>&nbsp; {{ trans('pages.shk_edit') }}</a>
                             </div>
                         </div>
                     </div>
@@ -69,7 +72,8 @@
                                 <strong class="card-title">{{ trans('pages.nhan_khau_trong_ho') }}</strong>
                             </div>
                             <div class="col-8 d-flex justify-content-end">
-                                <a href="#addEmployeeModal" class="btn btn-sm btn-success" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp; {{ trans('pages.shk_create') }}</a>
+                                <a href="#addNK" class="btn btn-sm btn-success" data-toggle="modal"><i
+                                        class="fa fa-plus"></i>&nbsp; {{ trans('pages.shk_create') }}</a>
                             </div>
                         </div>
                     </div>
@@ -96,9 +100,14 @@
                                     <td>{{ $nhanKhau->ngay_sinh }}</td>
                                     <td>{{ $nhanKhau->dan_toc }}</td>
                                     <td>
-                                        <a class="btn btn-sm btn-outline-info" href="{{ route('nhankhau.show', $nhanKhau) }}" data-toggle="tooltip" title="{{ trans('pages.read') }}"><i class="fa fa-eye"></i></a>
-                                        <a class="btn btn-sm btn-outline-warning" href="{{ route('nhankhau.edit', $nhanKhau) }}" data-toggle="tooltip" title="{{ trans('pages.edit') }}"><i class="fa fa-pencil"></i></a>
-                                        <a class="btn btn-sm btn-outline-danger" href="#" data-toggle="tooltip" title="{{ trans('pages.delete') }}"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-sm btn-outline-info"
+                                           href="{{ route('nhankhau.show', $nhanKhau) }}" data-toggle="tooltip"
+                                           title="{{ trans('pages.read') }}"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-sm btn-outline-warning"
+                                           href="{{ route('nhankhau.edit', $nhanKhau) }}" data-toggle="tooltip"
+                                           title="{{ trans('pages.edit') }}"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-sm btn-outline-danger" href="#" data-toggle="tooltip"
+                                           title="{{ trans('pages.delete') }}"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -109,11 +118,35 @@
             </div>
         </div>
     </div><!-- .animated -->
-    <!-- Edit Modal HTML -->
-    <div id="addEmployeeModal" class="modal fade">
+    <div id="addNK" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form class="form-group" action="{{ route('nhankhau.store') }}" enctype="multipart/form-data" method="POST">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>{{ trans('pages.shk_create') }}</strong></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6 d-flex justify-content-center">
+                            <a href="#nk_come" class="btn btn-sm btn-outline-warning" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp; {{ trans('pages.nk_come') }}</a>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <a href="#khai_sinh" class="btn btn-sm btn-outline-info" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp; {{ trans('pages.nk_ks') }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Modal HTML -->
+    <div id="nk_come" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-group" action="{{ route('nhankhau.store') }}" enctype="multipart/form-data"
+                      method="POST">
                     @csrf
                     <div class="modal-header">
                         <h4 class="modal-title"><strong>{{ trans('pages.nk_info') }}</strong></h4>
@@ -121,7 +154,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group col-md-6">
-                            <label for="ho_ten" class=" form-control-label">{{ trans('pages.ho_ten') }} <span class="required">*</span></label>
+                            <label for="ho_ten" class=" form-control-label">{{ trans('pages.ho_ten') }} <span
+                                    class="required">*</span></label>
                             <input type="text" id="ho_ten" name="ho_ten" class="form-control" required>
                         </div>
                         <div class="form-group col-md-6">
@@ -129,49 +163,151 @@
                             <input type="text" id="bi_danh" name="bi_danh" class="form-control">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="gioi_tinh" class=" form-control-label">{{ trans('pages.gioi_tinh') }} <span class="required">*</span></label>
+                            <label for="gioi_tinh" class=" form-control-label">{{ trans('pages.gioi_tinh') }} <span
+                                    class="required">*</span></label>
                             <input type="text" id="gioi_tinh" name="gioi_tinh" class="form-control" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="ngay_sinh" class=" form-control-label">{{ trans('pages.ngay_sinh') }} <span class="required">*</span></label>
+                            <label for="ngay_sinh" class=" form-control-label">{{ trans('pages.ngay_sinh') }} <span
+                                    class="required">*</span></label>
                             <input type="date" id="ngay_sinh" name="ngay_sinh" class="form-control" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="noi_sinh" class=" form-control-label">{{ trans('pages.noi_sinh') }} <span class="required">*</span></label>
+                            <label for="noi_sinh" class=" form-control-label">{{ trans('pages.noi_sinh') }} <span
+                                    class="required">*</span></label>
                             <input type="text" id="noi_sinh" name="noi_sinh" class="form-control" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="nguyen_quan" class=" form-control-label">{{ trans('pages.nguyen_quan') }}</label>
+                            <label for="nguyen_quan"
+                                   class=" form-control-label">{{ trans('pages.nguyen_quan') }}</label>
                             <input type="text" id="nguyen_quan" name="nguyen_quan" class="form-control">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="dan_toc" class=" form-control-label">{{ trans('pages.dan_toc') }} <span class="required">*</span></label>
+                            <label for="dan_toc" class=" form-control-label">{{ trans('pages.dan_toc') }} <span
+                                    class="required">*</span></label>
                             <input type="text" id="dan_toc" name="dan_toc" class="form-control" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="nghe_nghiep" class=" form-control-label">{{ trans('pages.nghe_nghiep') }}</label>
+                            <label for="nghe_nghiep"
+                                   class=" form-control-label">{{ trans('pages.nghe_nghiep') }}</label>
                             <input type="text" id="nghe_nghiep" name="nghe_nghiep" class="form-control">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="noi_lam_viec" class=" form-control-label">{{ trans('pages.noi_lam_viec') }}</label>
+                            <label for="noi_lam_viec"
+                                   class=" form-control-label">{{ trans('pages.noi_lam_viec') }}</label>
                             <input type="text" id="noi_lam_viec" name="noi_lam_viec" class="form-control">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="quan_he_voi_chu_ho" class=" form-control-label">{{ trans('pages.quan_he_voi_chu_ho') }}</label>
+                            <label for="quan_he_voi_chu_ho"
+                                   class=" form-control-label">{{ trans('pages.quan_he_voi_chu_ho') }}</label>
                             <input type="text" id="quan_he_voi_chu_ho" name="quan_he_voi_chu_ho" class="form-control">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="thuong_tru_truoc" class=" form-control-label">{{ trans('pages.thuong_tru_truoc') }}</label>
+                            <label for="thuong_tru_truoc"
+                                   class=" form-control-label">{{ trans('pages.thuong_tru_truoc') }}</label>
                             <input type="text" id="thuong_tru_truoc" name="thuong_tru_truoc" class="form-control">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="sohokhau_id" class=" form-control-label">{{ trans('pages.sohokhau_id') }}</label>
-                            <input type="text" id="sohokhau_id" name="sohokhau_id" value="{{ $sohokhau->id }}" class="form-control">
+                            <label for="sohokhau_id"
+                                   class=" form-control-label">{{ trans('pages.sohokhau_id') }}</label>
+                            <input type="text" id="sohokhau_id" name="sohokhau_id" value="{{ $sohokhau->id }}"
+                                   class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
+                        <button type="submit" class="btn btn-sm btn-info"><i
+                                class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="khai_sinh" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-group" action="{{ route('nhankhau.store') }}" enctype="multipart/form-data"
+                      method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h4 class="modal-title"><strong>{{ trans('pages.nk_info') }}</strong></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group col-md-6">
+                            <label for="ho_ten" class=" form-control-label">{{ trans('pages.ho_ten') }} <span
+                                    class="required">*</span></label>
+                            <input type="text" id="ho_ten" name="ho_ten" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="bi_danh" class=" form-control-label">{{ trans('pages.bi_danh') }}</label>
+                            <input type="text" id="bi_danh" name="bi_danh" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="gioi_tinh" class=" form-control-label">{{ trans('pages.gioi_tinh') }} <span
+                                    class="required">*</span></label>
+                            <input type="text" id="gioi_tinh" name="gioi_tinh" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="ngay_sinh" class=" form-control-label">{{ trans('pages.ngay_sinh') }} <span
+                                    class="required">*</span></label>
+                            <input type="date" id="ngay_sinh" name="ngay_sinh" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="noi_sinh" class=" form-control-label">{{ trans('pages.noi_sinh') }} <span
+                                    class="required">*</span></label>
+                            <input type="text" id="noi_sinh" name="noi_sinh" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="nguyen_quan"
+                                   class=" form-control-label">{{ trans('pages.nguyen_quan') }}</label>
+                            <input type="text" id="nguyen_quan" name="nguyen_quan" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="dan_toc" class=" form-control-label">{{ trans('pages.dan_toc') }} <span
+                                    class="required">*</span></label>
+                            <input type="text" id="dan_toc" name="dan_toc" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="ten_me"
+                                   class=" form-control-label">{{ trans('pages.ten_me') }} <span
+                                    class="required">*</span></label>
+                            <input type="text" id="ten_me" name="ten_me" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="ten_cha"
+                                   class=" form-control-label">{{ trans('pages.ten_cha') }} <span
+                                    class="required">*</span></label>
+                            <input type="text" id="ten_cha" name="ten_cha" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="quan_he_voi_chu_ho"
+                                   class=" form-control-label">{{ trans('pages.quan_he_voi_chu_ho') }}</label>
+                            <input type="text" id="quan_he_voi_chu_ho" name="quan_he_voi_chu_ho" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="noi_dang_ky"
+                                   class=" form-control-label">{{ trans('pages.noi_dang_ky') }} <span
+                                    class="required">*</span></label>
+                            <input type="text" id="noi_dang_ky" name="noi_dang_ky" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="ngay_dang_ky"
+                                   class=" form-control-label">{{ trans('pages.ngay_dang_ky') }} <span
+                                    class="required">*</span></label>
+                            <input type="date" id="ngay_dang_ky" name="ngay_dang_ky" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="sohokhau_id"
+                                   class=" form-control-label">{{ trans('pages.sohokhau_id') }}</label>
+                            <input type="text" id="sohokhau_id" name="sohokhau_id" value="{{ $sohokhau->id }}"
+                                   class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <button type="submit" class="btn btn-sm btn-info"><i
+                                class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
                     </div>
                 </form>
             </div>
@@ -183,7 +319,8 @@
     <script src="{{ asset('vendor/bower-hkdt/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/bower-hkdt/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/bower-hkdt/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('vendor/bower-hkdt/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('vendor/bower-hkdt/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/bower-hkdt/vendors/jszip/dist/jszip.min.js') }}"></script>
     <script src="{{ asset('vendor/bower-hkdt/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
     <script src="{{ asset('vendor/bower-hkdt/vendors/pdfmake/build/vfs_fonts.js') }}"></script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NhanKhauRequest;
+use App\Models\GiayKhaiSinh;
 use App\Models\NhanKhau;
 
 class NhanKhauController extends Controller
@@ -38,6 +39,18 @@ class NhanKhauController extends Controller
     public function store(NhanKhauRequest $request)
     {
         $nhanKhau = NhanKhau::create($request->all());
+
+        if ($request->has('ten_me')) {
+            GiayKhaiSinh::create([
+                'ten_me' => $request->get('ten_me'),
+                'ten_cha' => $request->get('ten_cha'),
+                'noi_dang_ky' => $request->get('noi_dang_ky'),
+                'ngay_dang_ky' => $request->get('ngay_dang_ky'),
+                'nhankhau_id' => $nhanKhau->id,
+            ]);
+
+            return redirect()->back()->with('success', 'Khai sinh thành công!');
+        }
 
         return redirect()->route('nhankhau.show', $nhanKhau);
     }
