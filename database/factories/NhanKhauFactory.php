@@ -37,7 +37,7 @@ class NhanKhauFactory extends Factory
             ]),
             'nghe_nghiep' => null,
             'noi_lam_viec' => null,
-            'quan_he_voi_chu_ho' => null,
+            'quan_he_voi_chu_ho' => $this->faker->randomElement(['con', 'vợ', 'cháu']),
             'thuong_tru_truoc' => null,
             'sohokhau_id' => $this->faker->numberBetween(1, 100),
         ];

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SoHoKhauRequest;
+use App\Http\Requests\TachHoRequest;
+use App\Models\NhanKhau;
 use App\Models\SoHoKhau;
+use Illuminate\Http\Request;
 
 class SoHoKhauController extends Controller
 {
@@ -92,5 +95,23 @@ class SoHoKhauController extends Controller
         $sohokhau->delete();
 
         return redirect()->route('sohokhau.index');
+    }
+
+    public function tachHo(TachHoRequest $request)
+    {
+        $soHoKhau = SoHoKhau::create($request->all());
+
+        foreach ($request->get('nhan_khaus') as $id) {
+            NhanKhau::find($id)->update(['sohokhau_id' => $soHoKhau->id]);
+        }
+
+        return redirect()->route('sohokhau.show', $soHoKhau)->with('success', 'Tách hộ thành công!');
+    }
+
+    public function dochuho(Request $request, SoHoKhau $sohokhau)
+    {
+        $sohokhau->update(['chu_ho_id' => $request->get('chu_ho_id')]);
+
+        return redirect()->back()->with('success', 'Đổi chủ hộ thành công!');
     }
 }
