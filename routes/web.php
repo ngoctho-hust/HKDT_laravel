@@ -27,4 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('nhankhau', \App\Http\Controllers\NhanKhauController::class);
     Route::resource('cccd', \App\Http\Controllers\CCCDController::class)->only(['store', 'update', 'destroy']);
     Route::resource('giaykhaisinh', \App\Http\Controllers\GiayKhaiSinhController::class)->only(['store', 'update', 'destroy']);
+
+    Route::post('tachHo', [\App\Http\Controllers\SoHoKhauController::class, 'tachHo'])->name('sohokhau.tachho');
+    Route::PATCH('dochuho/{sohokhau}', [\App\Http\Controllers\SoHoKhauController::class, 'dochuho'])->name('sohokhau.doichuho');
 });

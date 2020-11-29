@@ -60,4 +60,10 @@ return [
     'no_gks' => 'Chưa có giấy khai sinh',
     'gks_delete' => 'Xóa giấy khai sinh',
     'gks_delete_confirm' => 'Bạn có muốn xóa giấy khai sinh này?',
+    'tach_ho' => 'Tách hộ',
+    'chon_nk' => 'Chọn nhân khẩu',
+    'chu_ho_default' => 'chưa có chủ hộ',
+    'doi_chu_ho' => 'Đổi chủ hộ',
+    'thay_doi' => 'Thay đổi',
+    'shk' => 'Sổ hộ khẩu',
 ];

@@ -24,7 +24,6 @@
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>{{ trans('pages.quan_he_voi_chu_ho') }}</th>
                                 <th>{{ trans('pages.ho_ten') }}</th>
                                 <th>{{ trans('pages.bi_danh') }}</th>
                                 <th>{{ trans('pages.gioi_tinh') }}</th>
@@ -36,7 +35,6 @@
                             <tbody>
                             @foreach($nhanKhaus as $nhanKhau)
                                 <tr>
-                                    <td>{{ $nhanKhau->quan_he_voi_chu_ho }}</td>
                                     <td>{{ $nhanKhau->ho_ten }}</td>
                                     <td>{{ $nhanKhau->bi_danh }}</td>
                                     <td>{{ $nhanKhau->gioi_tinh }}</td>

@@ -5,7 +5,7 @@
         <div class="col-sm-7">
             <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
             <h3>@yield('title')</h3>
-            <a href="{{ url()->previous() }}">{{ trans('pages.back') }}</a>
+            @yield('shortcut')
         </div>
 
         <div class="col-sm-5">

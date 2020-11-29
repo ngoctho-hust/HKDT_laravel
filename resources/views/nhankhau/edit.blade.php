@@ -2,6 +2,10 @@
 
 @section('title', $nhankhau->ho_ten)
 
+@section('shortcut')
+    <a href="{{ route('sohokhau.show', $nhankhau->soHoKhau) }}">{{ trans('pages.shk') }}</a>
+@endsection
+
 @section('quan_ly_nhan_khau', 'active')
 
 @push('head')
