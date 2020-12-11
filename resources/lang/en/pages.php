@@ -66,4 +66,11 @@ return [
     'doi_chu_ho' => 'Đổi chủ hộ',
     'thay_doi' => 'Thay đổi',
     'shk' => 'Sổ hộ khẩu',
+    'tong_quan' => 'Tổng quan',
+    'statistic' => 'Thống kê',
+    'chart' => [
+        'gioi_tinh' => 'Thống kê theo gới tính',
+        'age' => 'Thống kê theo độ tuổi',
+        'time' => 'Thống kê nhân khẩu theo thời gian',
+    ],
 ];
