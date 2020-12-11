@@ -44,7 +44,7 @@ class NhanKhau extends Model
         return $this->hasOne(GiayKhaiSinh::class, 'nhankhau_id');
     }
 
-    public function khauTu()
+    public function khaiTu()
     {
         return $this->hasOne(KhaiTu::class, 'nhankhau_id');
     }

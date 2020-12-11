@@ -17,11 +17,10 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/', function () {
-        $soHoKhaus = \App\Models\SoHoKhau::all();
-        return redirect()->route('home', compact('soHoKhaus'));
+        return redirect()->route('statistic');
     });
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/statistic', [App\Http\Controllers\StatisticController::class, 'index'])->name('statistic');
 
     Route::resource('sohokhau', \App\Http\Controllers\SoHoKhauController::class);
     Route::resource('nhankhau', \App\Http\Controllers\NhanKhauController::class);
