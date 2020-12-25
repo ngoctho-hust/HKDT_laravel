@@ -17,7 +17,7 @@
                     <div class="card-header">
                         <strong class="card-title">{{ trans('pages.ds_nk') }}</strong>
                         <div>
-                            <a class="btn btn-sm btn-success" href="{{ route('nhankhau.create') }}"><i class="fa fa-plus"></i>&nbsp; {{ trans('pages.shk_create') }}</a>
+                            <button class="btn btn-sm btn-success create" data-href="{{ route('nhankhau.create') }}" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp; {{ trans('pages.shk_create') }}</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -32,20 +32,9 @@
                                 <th>{{ trans('pages.option') }}</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="table_body">
                             @foreach($nhanKhaus as $nhanKhau)
-                                <tr>
-                                    <td>{{ $nhanKhau->ho_ten }}</td>
-                                    <td>{{ $nhanKhau->bi_danh }}</td>
-                                    <td>{{ $nhanKhau->gioi_tinh }}</td>
-                                    <td>{{ $nhanKhau->ngay_sinh }}</td>
-                                    <td>{{ $nhanKhau->dan_toc }}</td>
-                                    <td>
-                                        <a class="btn btn-sm btn-outline-info" href="{{ route('nhankhau.show', $nhanKhau) }}" data-toggle="tooltip" title="{{ trans('pages.read') }}"><i class="fa fa-eye"></i></a>
-                                        <a class="btn btn-sm btn-outline-warning" href="{{ route('nhankhau.edit', $nhanKhau) }}" data-toggle="tooltip" title="{{ trans('pages.edit') }}"><i class="fa fa-pencil"></i></a>
-                                        <a class="btn btn-sm btn-outline-danger" href="#" data-toggle="tooltip" title="{{ trans('pages.delete') }}"><i class="fa fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                                @include('nhankhau.row', $nhanKhau)
                             @endforeach
                             </tbody>
                         </table>
@@ -54,6 +43,20 @@
             </div>
         </div>
     </div><!-- .animated -->
+
+    <div id="showModal" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong id="show_title"></strong></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" id="show_body">
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('foot')
@@ -68,4 +71,10 @@
     <script src="{{ asset('vendor/bower-hkdt/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('vendor/bower-hkdt/vendors/datatables.net-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('vendor/bower-hkdt/assets/js/init-scripts/data-table/datatables-init.js') }}"></script>
+
+    <script src="{{ asset('vendor/bower-hkdt/vendors/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    <script
+        src="{{ asset('vendor/bower-hkdt/vendors/jquery-validation-unobtrusive/src/jquery.validate.unobtrusive.js') }}"></script>
+
+    <script src="{{ asset('js/nhankhau.js') }}"></script>
 @endpush
