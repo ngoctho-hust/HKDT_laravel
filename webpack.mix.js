@@ -16,4 +16,5 @@ mix.js('resources/js/app.js', 'public/js')
 mix.copy(['resources/css/main.css'], 'public/css/main.css');
 
 mix.js('resources/js/statistic.js', 'public/js/statistic.js');
+mix.js('resources/js/nhankhau.js', 'public/js/nhankhau.js');
 

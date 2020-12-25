@@ -12,7 +12,7 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="@yield('thong_ke')">
-                    <a href=""> <i class="menu-icon fa fa-bar-chart"></i>Thống kê </a>
+                    <a href="{{ route('statistic') }}"> <i class="menu-icon fa fa-bar-chart"></i>Thống kê </a>
                 </li>
                 <li class="@yield('quan_ly_so_ho_khau')">
                     <a href="{{ route('sohokhau.index') }}"> <i class="menu-icon fa fa-book"></i>Quản lý sổ hộ khẩu </a>

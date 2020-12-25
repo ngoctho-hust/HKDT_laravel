@@ -30,6 +30,7 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>

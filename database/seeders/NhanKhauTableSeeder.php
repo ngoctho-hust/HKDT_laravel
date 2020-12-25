@@ -15,7 +15,7 @@ class NhanKhauTableSeeder extends Seeder
     public function run()
     {
         NhanKhau::factory()
-            ->times(500)
+            ->times(250)
             ->create();
     }
 }

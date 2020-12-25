@@ -23,18 +23,21 @@ class NhanKhauController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create()
     {
-        return view('nhankhau.create');
+        return response()->json([
+            'view' => view('nhankhau.create')->render(),
+            'title' => 'Thêm mới nhân khẩu',
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param NhanKhauRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(NhanKhauRequest $request)
     {
@@ -48,33 +51,40 @@ class NhanKhauController extends Controller
                 'ngay_dang_ky' => $request->get('ngay_dang_ky'),
                 'nhankhau_id' => $nhanKhau->id,
             ]);
-
-            return redirect()->back()->with('success', 'Khai sinh thành công!');
         }
 
-        return redirect()->route('nhankhau.show', $nhanKhau);
+        return response()->json([
+            'view' => view('nhankhau.row', compact('nhanKhau'))->render(),
+            'message' => view('common.message', ['message' => 'Tạo nhân khẩu thành công'])->render(),
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
      * @param NhanKhau $nhankhau
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(NhanKhau $nhankhau)
     {
-        return view('nhankhau.detail', compact('nhankhau'));
+        return response()->json([
+            'view' => view('nhankhau.detail', compact('nhankhau'))->render(),
+            'nhankhau' => $nhankhau,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param NhanKhau $nhankhau
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function edit(NhanKhau $nhankhau)
     {
-        return view('nhankhau.edit', compact('nhankhau'));
+        return response()->json([
+            'view' => view('nhankhau.edit', compact('nhankhau'))->render(),
+            'nhankhau' => $nhankhau,
+        ]);
     }
 
     /**
