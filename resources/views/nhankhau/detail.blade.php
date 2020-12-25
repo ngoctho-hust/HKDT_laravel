@@ -46,7 +46,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
-                            <button class="btn btn-sm btn-info edit" data-href="{{ route('nhankhau.edit', $nhankhau->id) }}"><i class="fa fa-pencil"></i>&nbsp; {{ trans('pages.shk_edit') }}</button>
+                            <button class="btn btn-sm btn-info" id="edit_nhankhau" data-href="{{ route('nhankhau.edit', $nhankhau->id) }}"><i class="fa fa-pencil"></i>&nbsp; {{ trans('pages.shk_edit') }}</button>
                         </div>
                     </div>
                 </div>

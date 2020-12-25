@@ -92,25 +92,28 @@ class NhanKhauController extends Controller
      *
      * @param NhanKhauRequest $request
      * @param NhanKhau $nhankhau
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(NhanKhauRequest $request, NhanKhau $nhankhau)
     {
         $nhankhau->update($request->all());
 
-        return redirect()->route('nhankhau.show', $nhankhau)->with('success', 'Cập nhật nhân khẩu thành công');
+        return response()->json([
+            'view' => view('nhankhau.row', ['nhanKhau' => $nhankhau])->render(),
+            'message' => view('common.message', ['message' => 'Cập nhật nhân khẩu thành công'])->render(),
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param NhanKhau $nhankhau
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(NhanKhau $nhankhau)
     {
         $nhankhau->delete();
 
-        return redirect()->route('nhankhau.index');
+        return response()->json(['success' => 'Đã xóa nhân khẩu']);
     }
 }
