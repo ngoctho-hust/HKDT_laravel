@@ -61,6 +61,7 @@
 <script src="{{ asset('vendor/bower-hkdt/vendors/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/bower-hkdt/vendors/popper.js/dist/umd/popper.min.js') }}"></script>
 <script src="{{ asset('vendor/bower-hkdt/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('vendor/sweetalert.min/index.js') }}"></script>
 
 @stack('foot')
 

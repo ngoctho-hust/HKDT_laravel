@@ -1,9 +1,10 @@
-$(document).ready(function () {
-    jQuery(document).on('click', '.show', function (e) {
-        let url = jQuery(this).data('href');
-        let CSRF_TOKEN = jQuery('meta[name="csrf-token"]').attr('content');
+jQuery(document).ready(function ($) {
+    $(document).on('click', '.show',function (e) {
+        let url = $(this).data('href');
+        let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        let id = $(this).data('id');
 
-        jQuery.ajax({
+        $.ajax({
             type : 'GET',
             url : url,
             data : {
@@ -11,19 +12,23 @@ $(document).ready(function () {
             },
             dataType : 'JSON',
             success : function (res) {
-                jQuery('#show_title').html(res.nhankhau.ho_ten);
-                jQuery('#show_body').html(res.view);
-                jQuery('#showModal').modal('show');
+                $('#show_title').html(res.nhankhau.ho_ten);
+                $('#show_body').html(res.view);
+                $('#showModal').modal('show');
+
+                $('#edit_nhankhau').on('click', function (e) {
+                    $('#btn_edit_' + id).click();
+                })
             }
         })
     });
 
     // show create form
-    jQuery(document).on('click', '.create', function (e) {
-        let url = jQuery(this).data('href');
-        let CSRF_TOKEN = jQuery('meta[name="csrf-token"]').attr('content');
+    $('.create').on('click', function (e) {
+        let url = $(this).data('href');
+        let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-        jQuery.ajax({
+        $.ajax({
             type : 'GET',
             url : url,
             data : {
@@ -31,45 +36,46 @@ $(document).ready(function () {
             },
             dataType : 'JSON',
             success : function (res) {
-                jQuery('#show_title').html(res.title);
-                jQuery('#show_body').html(res.view);
-                jQuery('#showModal').modal('show');
+                $('#show_title').html(res.title);
+                $('#show_body').html(res.view);
+                $('#showModal').modal('show');
             }
         })
     });
 
     // submit create from
-    jQuery(document).on('submit', '#create_form', function (e) {
+    $('#create_form').on('submit', function (e) {
         e.preventDefault();
 
-        let url = jQuery(this).attr('action');
-        let CSRF_TOKEN = jQuery('meta[name="csrf-token"]').attr('content');
+        let url = $(this).attr('action');
+        let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         let form = this;
 
-        jQuery.ajaxSetup({
+        $.ajaxSetup({
             header : {
                 'X-CSRF-TOKEN' : CSRF_TOKEN,
             }
         });
 
-        jQuery.ajax({
+        $.ajax({
             type : 'POST',
             url : url,
-            data : jQuery(form).serialize(),
+            data : $(form).serialize(),
             dataType : 'JSON',
             success : function (res) {
-                jQuery('#table_body').prepend(res.view);
-                jQuery('#createModal').modal('hide');
-                jQuery('.content').prepend(res.message);
+                $('#table_body').prepend(res.view);
+                $('#createModal').modal('hide');
+                $('.content').prepend(res.message);
             }
         })
     });
 
     // show edit form
-    jQuery(document).on('click', '.edit', function (e) {
-        let url = jQuery(this).data('href');
-        let CSRF_TOKEN = jQuery('meta[name="csrf-token"]').attr('content');
+    $(document).on('click', '.edit' ,function (e) {
+        let url = $(this).data('href');
+        let row = $(this).closest('tr');
+        let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         jQuery.ajax({
             type : 'GET',
@@ -79,38 +85,79 @@ $(document).ready(function () {
             },
             dataType : 'JSON',
             success : function (res) {
-                jQuery('#show_title').html(res.nhankhau.ho_ten);
-                jQuery('#show_body').html(res.view);
-                jQuery('#showModal').modal('show');
+                $('#show_title').html(res.nhankhau.ho_ten);
+                $('#show_body').html(res.view);
+                $('#showModal').modal('show');
+
+                setActionEditForm(row);
             }
         })
     });
 
-    // // submit edit form
-    // jQuery(document).on('submit', '#edit_form', function (e) {
-    //     e.preventDefault();
-    //
-    //     let url = jQuery(this).attr('action');
-    //     let CSRF_TOKEN = jQuery('meta[name="csrf-token"]').attr('content');
-    //
-    //     let form = this;
-    //
-    //     jQuery.ajaxSetup({
-    //         header : {
-    //             'X-CSRF-TOKEN' : CSRF_TOKEN,
-    //         }
-    //     });
-    //
-    //     jQuery.ajax({
-    //         type : 'POST',
-    //         url : url,
-    //         data : jQuery(form).serialize(),
-    //         dataType : 'JSON',
-    //         success : function (res) {
-    //             jQuery('#table_body').prepend(res.view);
-    //             jQuery('#createModal').modal('hide');
-    //             jQuery('.content').prepend(res.message);
-    //         }
-    //     })
-    // });
+
+    function setActionEditForm(row) {
+        // submit edit form
+        $('#edit_form').on('submit', function (e) {
+            e.preventDefault();
+
+            let url = $(this).attr('action');
+            let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+            let form = this;
+
+            $.ajaxSetup({
+                header : {
+                    'X-CSRF-TOKEN' : CSRF_TOKEN,
+                }
+            });
+
+            $.ajax({
+                type : 'PATCH',
+                url : url,
+                data : $(form).serialize(),
+                dataType : 'JSON',
+                success : function (res) {
+                    $(row).replaceWith(res.view);
+                    $('#showModal').modal('hide');
+                    $('.content').prepend(res.message);
+                }
+            })
+        });
+    }
+
+    // delete nhankhau
+    $(document).on('click', '.delete', function (e) {
+        let url = $(this).data('href');
+        let row = $(this).closest('tr');
+        swal({
+            title: 'Xóa nhân khẩu?',
+            text: 'Không thể khôi phục sau khi xóa',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+            showLoaderOnConfirm: true,
+            allowOutsideClick: false,
+        }).then(function(value) {
+            if (value) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajax({
+                    type: 'DELETE',
+                    url: url,
+                    data: {
+                        _token: CSRF_TOKEN,
+                    },
+                    dataType: 'JSON',
+                    success: function (res) {
+                        $(row).remove();
+                    },
+                    error: function () {
+                        swal('Something went wrong!', {
+                            icon: "error",
+                        });
+                    }
+                });
+            }
+        });
+    })
 });

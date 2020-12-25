@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "bower-hkdt": "https://github.com/ngoctho-hust/bowerhkdt.git"
+    "bower-hkdt": "https://github.com/ngoctho-hust/bowerhkdt.git",
+    "sweetalert.min": "https://unpkg.com/sweetalert/dist/sweetalert.min.js"
   }
 }
