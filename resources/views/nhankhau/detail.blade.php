@@ -146,15 +146,15 @@
 </div><!-- .animated -->
 @if ($nhankhau->CCCD)
     <!-- Edit CCCD HTML -->
-    <div id="editCCCD" class="modal fade">
+    <div id="editCCCD" class="modal fade" data-id="{{ $nhankhau->id }}">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form class="form-group" action="{{ route('cccd.update', $nhankhau->CCCD) }}" enctype="multipart/form-data" method="POST">
+                <form id="update_CCCD_form" class="form-group" action="{{ route('cccd.update', $nhankhau->CCCD) }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PATCH')
                     <div class="modal-header">
                         <h4 class="modal-title"><strong>{{ trans('pages.cccd') }}</strong></h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" onclick="jQuery('#editCCCD').modal('hide');">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
@@ -171,7 +171,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="button" class="btn btn-default" onclick="jQuery('#editCCCD').modal('hide');" value="Cancel">
                         <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
                     </div>
                 </form>
@@ -179,23 +179,57 @@
         </div>
     </div>
     <!-- Delete CCCD Modal HTML -->
-    <div id="deleteCCCDModal" class="modal fade">
+    <div id="deleteCCCDModal" class="modal fade" data-id="{{ $nhankhau->id }}">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ route('cccd.destroy', $nhankhau->CCCD) }}" method="POST">
+                <form id="delete_CCCD_form" action="{{ route('cccd.destroy', $nhankhau->CCCD) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-header">
                         <h4 class="modal-title">{{ trans('pages.cccd_delete') }}</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" onclick="jQuery('#deleteCCCDModal').modal('hide');">&times;</button>
                     </div>
                     <div class="modal-body">
                         <p>{{ trans('pages.cccd_delete_confirm') }}</p>
                         <p class="text-warning"><small>{{ trans('pages.not_undo') }}</small></p>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="{{ trans('pages.cancel') }}">
+                        <input type="button" class="btn btn-default" onclick="jQuery('#deleteCCCDModal').modal('hide');" value="{{ trans('pages.cancel') }}">
                         <input type="submit" class="btn btn-danger" value="{{ trans('pages.delete') }}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@else
+    <!-- Create CCCD HTML -->
+    <div id="createCCCD" class="modal fade" data-id="{{ $nhankhau->id }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="create_CCCD_form" class="form-group" action="{{ route('cccd.store') }}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h4 class="modal-title"><strong>{{ trans('pages.cccd') }}</strong></h4>
+                        <button type="button" class="close" onclick="jQuery('#createCCCD').modal('hide');">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="so_cccd" class=" form-control-label">{{ trans('pages.so') }} <span class="required">*</span></label>
+                            <input type="text" id="so_cccd" name="so_cccd" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ngay_cap" class=" form-control-label">{{ trans('pages.ngay_cap') }} <span class="required">*</span></label>
+                            <input type="date" id="ngay_cap" name="ngay_cap" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="noi_cap" class=" form-control-label">{{ trans('pages.noi_cap') }} <span class="required">*</span></label>
+                            <input type="text" id="noi_cap" name="noi_cap" class="form-control" required>
+                        </div>
+                        <input type="hidden" name="nhankhau_id" value="{{ $nhankhau->id }}">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" onclick="jQuery('#createCCCD').modal('hide');" value="Cancel">
+                        <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
                     </div>
                 </form>
             </div>
@@ -205,15 +239,15 @@
 
 @if ($nhankhau->giayKhaiSinh)
     <!-- Edit GKS HTML -->
-    <div id="editGKS" class="modal fade">
+    <div id="editGKS" class="modal fade" data-id="{{ $nhankhau->id }}">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form class="form-group" action="{{ route('giaykhaisinh.update', $nhankhau->giayKhaiSinh) }}" enctype="multipart/form-data" method="POST">
+                <form id="update_GKS_form" class="form-group" action="{{ route('giaykhaisinh.update', $nhankhau->giayKhaiSinh) }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PATCH')
                     <div class="modal-header">
                         <h4 class="modal-title"><strong>{{ trans('pages.giay_khai_sinh') }}</strong></h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" onclick="jQuery('#editGKS').modal('hide');">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
@@ -235,7 +269,7 @@
                         <input type="hidden" name="nhankhau_id" value="{{ $nhankhau->id }}">
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="button" class="btn btn-default" onclick="jQuery('#editGKS').modal('hide');" value="Cancel">
                         <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
                     </div>
                 </form>
@@ -243,97 +277,64 @@
         </div>
     </div>
     <!-- Delete GKS Modal HTML -->
-    <div id="deleteGKSModal" class="modal fade">
+    <div id="deleteGKSModal" class="modal fade" data-id="{{ $nhankhau->id }}">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ route('giaykhaisinh.destroy', $nhankhau->giayKhaiSinh) }}" method="POST">
+                <form id="delete_GKS_form" action="{{ route('giaykhaisinh.destroy', $nhankhau->giayKhaiSinh) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-header">
                         <h4 class="modal-title">{{ trans('pages.gks_delete') }}</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" onclick="jQuery('#deleteGKSModal').modal('hide');">&times;</button>
                     </div>
                     <div class="modal-body">
                         <p>{{ trans('pages.gks_delete_confirm') }}</p>
                         <p class="text-warning"><small>{{ trans('pages.not_undo') }}</small></p>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="{{ trans('pages.cancel') }}">
+                        <input type="button" class="btn btn-default" onclick="jQuery('#deleteCCCDModal').modal('hide');" value="{{ trans('pages.cancel') }}">
                         <input type="submit" class="btn btn-danger" value="{{ trans('pages.delete') }}">
                     </div>
                 </form>
             </div>
         </div>
     </div>
+@else
+    <!-- Create GKS HTML -->
+    <div id="createGKS" class="modal fade" data-id="{{ $nhankhau->id }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="create_GKS_form" class="form-group" action="{{ route('giaykhaisinh.store') }}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h4 class="modal-title"><strong>{{ trans('pages.giay_khai_sinh') }}</strong></h4>
+                        <button type="button" class="close" onclick="jQuery('#createGKS').modal('hide');">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="ten_me" class=" form-control-label">{{ trans('pages.ten_me') }} <span class="required">*</span></label>
+                            <input type="text" id="ten_me" name="ten_me" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ten_cha" class=" form-control-label">{{ trans('pages.ten_cha') }} <span class="required">*</span></label>
+                            <input type="text" id="ten_cha" name="ten_cha" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="noi_dang_ky" class=" form-control-label">{{ trans('pages.noi_dang_ky') }} <span class="required">*</span></label>
+                            <input type="text" id="noi_dang_ky" name="noi_dang_ky" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ngay_dang_ky" class=" form-control-label">{{ trans('pages.ngay_dang_ky') }} <span class="required">*</span></label>
+                            <input type="date" id="ngay_dang_ky" name="ngay_dang_ky" class="form-control" required>
+                        </div>
+                        <input type="hidden" name="nhankhau_id" value="{{ $nhankhau->id }}">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" onclick="jQuery('#createGKS').modal('hide');" value="Cancel">
+                        <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endif
-<!-- Create CCCD HTML -->
-<div id="createCCCD" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form class="form-group" action="{{ route('cccd.store') }}" enctype="multipart/form-data" method="POST">
-                @csrf
-                <div class="modal-header">
-                    <h4 class="modal-title"><strong>{{ trans('pages.cccd') }}</strong></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="so_cccd" class=" form-control-label">{{ trans('pages.so') }} <span class="required">*</span></label>
-                        <input type="text" id="so_cccd" name="so_cccd" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="ngay_cap" class=" form-control-label">{{ trans('pages.ngay_cap') }} <span class="required">*</span></label>
-                        <input type="date" id="ngay_cap" name="ngay_cap" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="noi_cap" class=" form-control-label">{{ trans('pages.noi_cap') }} <span class="required">*</span></label>
-                        <input type="text" id="noi_cap" name="noi_cap" class="form-control" required>
-                    </div>
-                    <input type="hidden" name="nhankhau_id" value="{{ $nhankhau->id }}">
-                </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Create CCCD HTML -->
-<div id="createGKS" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form class="form-group" action="{{ route('giaykhaisinh.store') }}" enctype="multipart/form-data" method="POST">
-                @csrf
-                <div class="modal-header">
-                    <h4 class="modal-title"><strong>{{ trans('pages.giay_khai_sinh') }}</strong></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="ten_me" class=" form-control-label">{{ trans('pages.ten_me') }} <span class="required">*</span></label>
-                        <input type="text" id="ten_me" name="ten_me" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="ten_cha" class=" form-control-label">{{ trans('pages.ten_cha') }} <span class="required">*</span></label>
-                        <input type="text" id="ten_cha" name="ten_cha" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="noi_dang_ky" class=" form-control-label">{{ trans('pages.noi_dang_ky') }} <span class="required">*</span></label>
-                        <input type="text" id="noi_dang_ky" name="noi_dang_ky" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="ngay_dang_ky" class=" form-control-label">{{ trans('pages.ngay_dang_ky') }} <span class="required">*</span></label>
-                        <input type="date" id="ngay_dang_ky" name="ngay_dang_ky" class="form-control" required>
-                    </div>
-                    <input type="hidden" name="nhankhau_id" value="{{ $nhankhau->id }}">
-                </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-floppy-o"></i> {{ trans('pages.save') }}</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>

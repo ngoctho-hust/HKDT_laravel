@@ -32,13 +32,15 @@ class CCCDController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CCCDRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(CCCDRequest $request)
     {
         CCCD::create($request->all());
 
-        return redirect()->back()->with('success', 'Thêm mới CCCD thành công!');
+        return response()->json([
+            'success' => 'Thêm mới CCCD thành công!',
+        ]);
     }
 
     /**
@@ -68,25 +70,29 @@ class CCCDController extends Controller
      *
      * @param CCCDRequest $request
      * @param CCCD $cccd
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(CCCDRequest $request, CCCD $cccd)
     {
         $cccd->update($request->all());
 
-        return redirect()->back()->with('success', 'Cập nhật CCCD thành công!');
+        return response()->json([
+            'success' => 'Cập nhật CCCD thành công!',
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param CCCD $cccd
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(CCCD $cccd)
     {
         $cccd->delete();
 
-        return redirect()->back()->with('success', 'Đã xóa cccd!');
+        return response()->json([
+            'success' => 'Đã xóa CCCD!',
+        ]);
     }
 }
