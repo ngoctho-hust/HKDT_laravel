@@ -32,13 +32,15 @@ class GiayKhaiSinhController extends Controller
      * Store a newly created resource in storage.
      *
      * @param GiayKhaiSinhRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(GiayKhaiSinhRequest $request)
     {
         GiayKhaiSinh::create($request->all());
 
-        return redirect()->back()->with('success', 'Tạo giấy khai sinh thành công!');
+        return response()->json([
+            'success' => 'Tạo giấy khai sinh thành công!',
+        ]);
     }
 
     /**
@@ -68,25 +70,29 @@ class GiayKhaiSinhController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param GiayKhaiSinh $giaykhaisinh
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(GiayKhaiSinhRequest $request, GiayKhaiSinh $giaykhaisinh)
     {
         $giaykhaisinh->update($request->all());
 
-        return redirect()->back()->with('success', 'Đã cập nhật giấy khai sinh!');
+        return response()->json([
+            'success' => 'Đã cập nhật giấy khai sinh!',
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param GiayKhaiSinh $giaykhaisinh
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(GiayKhaiSinh $giaykhaisinh)
     {
         $giaykhaisinh->delete();
 
-        return redirect()->back()->with('success', 'Đã xóa giấy khai sinh!');
+        return response()->json([
+            'success' => 'Đã xóa giấy khai sinh!',
+        ]);
     }
 }
