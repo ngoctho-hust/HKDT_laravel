@@ -32,7 +32,7 @@ return [
     'dan_toc' => 'Dân tộc',
     'nghe_nghiep' => 'Nghề nghiệp',
     'noi_lam_viec' => 'Nơi làm việc',
-    'quan_he_voi_chu_ho' => 'Quan hệ với chủ hộ',
+    'quan_he_voi_chu_ho' => 'QHVCH',
     'thuong_tru_truoc' => 'Nơi thường trú trước khi chuyển đến',
     'sohokhau_id' => 'Số sổ hộ khẩu',
     'create' => 'Thêm mới',

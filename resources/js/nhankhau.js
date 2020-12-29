@@ -28,6 +28,8 @@ jQuery(document).ready(function ($) {
         let url = $(this).data('href');
         let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
+        let id = $(this).data('id');
+
         $.ajax({
             type : 'GET',
             url : url,
@@ -39,12 +41,15 @@ jQuery(document).ready(function ($) {
                 $('#show_title').html(res.title);
                 $('#show_body').html(res.view);
                 $('#showModal').modal('show');
+                if (id != null) {
+                    $('#sohokhau_id').val(id);
+                }
             }
         })
     });
 
     // submit create from
-    $('#create_form').on('submit', function (e) {
+    $(document).on('submit', '#create_form', function (e) {
         e.preventDefault();
 
         let url = $(this).attr('action');
@@ -65,7 +70,7 @@ jQuery(document).ready(function ($) {
             dataType : 'JSON',
             success : function (res) {
                 $('#table_body').prepend(res.view);
-                $('#createModal').modal('hide');
+                $('#showModal').modal('hide');
                 $('.content').prepend(res.message);
             }
         })
