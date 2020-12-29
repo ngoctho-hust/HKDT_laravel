@@ -1,11 +1,11 @@
-$(document).ready(function () {
+jQuery(document).ready(function ($) {
     //pie chart
     var ctx = document.getElementById( "pieChart" );
     ctx.height = 300;
 
-    var numOfMale = jQuery(ctx).data('male');
-    var numOfFemale = jQuery(ctx).data('female');
-    var numOfOther = jQuery(ctx).data('other');
+    var numOfMale = $(ctx).data('male');
+    var numOfFemale = $(ctx).data('female');
+    var numOfOther = $(ctx).data('other');
 
     var myChart = new Chart( ctx, {
         type: 'pie',
@@ -46,7 +46,7 @@ $(document).ready(function () {
             datasets: [
                 {
                     label: "Số nhân khẩu",
-                    data: jQuery(ctx).data('statistic'),
+                    data: $(ctx).data('statistic'),
                     borderColor: "rgba(32, 0, 64, 0.9)",
                     borderWidth: "0",
                     backgroundColor: "rgba(32, 0, 64, 0.5)"
@@ -70,11 +70,11 @@ $(document).ready(function () {
     var myChart = new Chart( ctx, {
         type: 'line',
         data: {
-            labels: jQuery(ctx).data('years'),
+            labels: $(ctx).data('years'),
             type: 'line',
             defaultFontFamily: 'Montserrat',
             datasets: [ {
-                data: jQuery(ctx).data('num'),
+                data: $(ctx).data('num'),
                 label: "Expense",
                 backgroundColor: 'rgba(0,103,255,.15)',
                 borderColor: 'rgba(0,103,255,0.5)',
@@ -130,9 +130,6 @@ $(document).ready(function () {
                         display: true,
                         labelString: 'Value'
                     },
-                    ticks: {
-                        min: 400,
-                    }
                 } ]
             },
             title: {
