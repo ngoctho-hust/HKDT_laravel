@@ -1,4 +1,5 @@
 <tr>
+    <td>{{ $nhanKhau->quan_he_voi_chu_ho }}</td>
     <td>{{ $nhanKhau->ho_ten }}</td>
     <td>{{ $nhanKhau->bi_danh }}</td>
     <td>{{ $nhanKhau->gioi_tinh }}</td>
